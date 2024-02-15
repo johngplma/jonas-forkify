@@ -1,0 +1,15 @@
+{
+  "name": "jonas-forkify",
+  "version": "1.0.0",
+  "description": "Final project of Jonas Schmedtmann in javascript course on Udemy",
+  "main": "app.js",
+  "scripts": {
+    "start": "parcel index.html",
+    "build": "parcel build index.html"
+  },
+  "author": "John G. Palma",
+  "license": "MIT",
+  "devDependencies": {
+    "parcel": "^2.11.0"
+  }
+}
