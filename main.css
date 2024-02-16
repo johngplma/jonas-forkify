@@ -29,7 +29,8 @@ input {
   width: 100%;
 }
 
-button {
+button,
+a {
   color: inherit;
 }
 
@@ -49,11 +50,11 @@ h6 {
 
 ul {
   list-style-type: none;
+  padding: 0;
 }
 
 a {
   text-decoration: none;
-  color: inherit;
 }
 
 .wrapper {
@@ -111,7 +112,7 @@ header {
         border: 1px solid hsl(240, 11%, 85%);
         border-radius: 5px;
         padding: 0.5rem 1rem;
-        width: 500px;
+        max-width: 500px;
       }
 
       .btn {
@@ -128,6 +129,42 @@ header {
   }
 
   .main-section {
-    height: 500px;
+    /* height: 500px; */
+    display: flex;
+
+    .recipes {
+      width: 35%;
+      padding: 0;
+      border: 1px solid hsl(240, 11%, 85%);
+
+      .recipe {
+        a {
+          display: flex;
+          gap: 1.5rem;
+          padding: 2rem;
+
+          img {
+            object-fit: cover;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+          }
+
+          .info {
+            overflow: hidden;
+            white-space: nowrap;
+
+            .title {
+              overflow: hidden;
+              text-overflow: ellipsis;
+            }
+          }
+        }
+
+        a:hover {
+          background-color: hsl(240, 11%, 96%);
+        }
+      }
+    }
   }
 }
