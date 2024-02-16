@@ -3,8 +3,11 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>jonas-forkify</title>
+
+    <script type="module" src="./controller.js"></script>
     <link rel="stylesheet" href="./main.css" />
+
+    <title>jonas-forkify</title>
   </head>
   <body>
     <header>
@@ -12,5 +15,24 @@
         <h1>jonas-forkify</h1>
       </div>
     </header>
+    <main>
+      <div class="wrapper main-container">
+        <section class="header-section">
+          <div class="wrapper">
+            <div class="search-field">
+              <input type="text" placeholder="eg. pizza" />
+              <button class="search-btn btn">Search</button>
+            </div>
+            <button class="bookmarks">Bookmarks</button>
+          </div>
+        </section>
+        <section class="main-section">
+          <ul>
+            <li></li>
+          </ul>
+          <div></div>
+        </section>
+      </div>
+    </main>
   </body>
 </html>

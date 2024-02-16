@@ -25,6 +25,18 @@ select {
   font: inherit;
 }
 
+input {
+  width: 100%;
+}
+
+button {
+  color: inherit;
+}
+
+button:hover {
+  cursor: pointer;
+}
+
 p,
 h1,
 h2,
@@ -35,7 +47,87 @@ h6 {
   overflow-wrap: break-word;
 }
 
+ul {
+  list-style-type: none;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
 .wrapper {
   width: min(1160px, 100% - 2rem);
   margin-inline: auto;
+}
+
+/* ----------------- CSS RESET END ----------------- */
+
+:root {
+  --shadow-color: 0deg 0% 73%;
+  --shadow-elevation-medium: 0.3px 0.5px 0.7px hsl(var(--shadow-color) / 0.17),
+    0.6px 1.1px 1.4px -0.6px hsl(var(--shadow-color) / 0.17),
+    1.1px 2.1px 2.7px -1.2px hsl(var(--shadow-color) / 0.17),
+    2.1px 4.2px 5.3px -1.9px hsl(var(--shadow-color) / 0.17),
+    4px 8px 10.1px -2.5px hsl(var(--shadow-color) / 0.17);
+
+  --color-text: #1d1d1f;
+  --color-bg: #fff;
+}
+
+body {
+  background-color: var(--color-bg);
+  color: var(--color-text);
+}
+
+header {
+  padding: 2rem 0 1rem 0;
+  color: var(--color-text);
+}
+
+.main-container {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid hsl(240, 11%, 90%);
+  border-radius: 5px;
+
+  .header-section {
+    background-color: hsl(240, 11%, 96%);
+
+    .wrapper {
+      display: flex;
+      justify-content: end;
+      gap: 2rem;
+    }
+
+    .search-field {
+      padding-block: 1rem;
+      display: flex;
+      gap: 0.75rem;
+      width: 100%;
+      justify-content: center;
+
+      input {
+        border: 1px solid hsl(240, 11%, 85%);
+        border-radius: 5px;
+        padding: 0.5rem 1rem;
+        width: 500px;
+      }
+
+      .btn {
+        border: 1px solid hsl(240, 11%, 85%);
+        padding: 0.5rem 1rem;
+        border-radius: 5px;
+      }
+    }
+
+    .bookmarks {
+      border: none;
+      padding-inline: 2rem;
+    }
+  }
+
+  .main-section {
+    height: 500px;
+  }
 }
