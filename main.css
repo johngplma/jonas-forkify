@@ -58,7 +58,7 @@ a {
 }
 
 .wrapper {
-  width: min(1160px, 100% - 2rem);
+  width: min(1160px, 100% - 2.5rem);
   margin-inline: auto;
 }
 
@@ -132,16 +132,16 @@ header {
     min-height: 500px;
     display: flex;
 
-    .recipes {
+    .search-results {
       width: 35%;
       padding: 0;
       border-right: 1px solid hsl(240, 11%, 85%);
 
-      .recipe:first-child {
+      .results:first-child {
         margin-top: 1rem;
       }
 
-      .recipe {
+      .result {
         a {
           display: flex;
           gap: 1.5rem;
@@ -186,6 +186,60 @@ header {
 
         a:hover {
           background-color: hsl(240, 11%, 96%);
+        }
+      }
+    }
+
+    .recipe-container {
+      padding-block: 1rem;
+
+      figure {
+        h1 {
+          font-size: 2rem;
+          margin-bottom: 1.5rem;
+        }
+      }
+
+      .recipe-details {
+        display: flex;
+        gap: 1rem;
+        justify-content: space-evenly;
+        align-items: center;
+        margin-bottom: 3rem;
+
+        button .icon:hover {
+          fill: hsl(216, 11%, 80%);
+        }
+
+        button {
+          border: none;
+          background-color: inherit;
+          padding: 0;
+        }
+
+        .icon:hover {
+        }
+
+        .recipe-info {
+          display: flex;
+          gap: 0.25rem;
+
+          .recipe-info-btn {
+            display: flex;
+          }
+        }
+      }
+
+      .ingredients-container {
+        /* border: 1px solid pink; */
+        margin-bottom: 3rem;
+
+        h2 {
+          margin-bottom: 1rem;
+        }
+
+        .ingredients li {
+          margin-bottom: 0.25rem;
         }
       }
     }

@@ -1,8 +1,8 @@
 'use strict';
 
-const recipeEl = document.querySelector('.recipes');
+const resultsContainer = document.querySelector('.results');
 
-const getRecipe = async function (query) {
+const getRecipes = async function (query) {
   try {
     const res = await fetch(
       `https://forkify-api.herokuapp.com/api/v2/recipes?search=${query}`
@@ -18,12 +18,12 @@ const getRecipe = async function (query) {
   }
 };
 
-getRecipe('pizza');
+getRecipes('pizza');
 
 const renderRecipes = function (recipes) {
-  recipes.map(function (recipe) {
+  recipes.forEach(function (recipe) {
     const html = `
-    <li class="recipe">
+    <li class="result">
       <a href="">
         <figure>
           <img src="${recipe.image_url}" alt="" />
@@ -35,6 +35,6 @@ const renderRecipes = function (recipes) {
       </a>
     </li>`;
 
-    recipeEl.insertAdjacentHTML('beforeend', html);
+    resultsContainer.insertAdjacentHTML('beforeend', html);
   });
 };
