@@ -140,6 +140,7 @@ header {
 
   .main-section {
     display: flex;
+    min-height: 600px;
 
     .search-results {
       width: 350px;
@@ -203,7 +204,15 @@ header {
       }
     }
 
+    .recipe {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
     .recipe-container {
+      margin-bottom: 5rem;
+
       figure {
         img {
           width: 100%;
@@ -268,11 +277,17 @@ header {
 
             .icon {
               margin-right: 1.5rem;
+              flex-shrink: 0;
             }
 
             .quantity,
             .unit {
               margin-right: 0.25rem;
+            }
+
+            .quantity:empty,
+            .unit:empty {
+              margin: 0px;
             }
           }
         }
@@ -291,6 +306,12 @@ header {
           text-align: center;
         }
       }
+    }
+
+    footer {
+      text-align: center;
+      padding: 1rem;
+      font-size: 0.75rem;
     }
   }
 }
