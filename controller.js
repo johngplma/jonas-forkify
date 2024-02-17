@@ -25,7 +25,9 @@ const renderRecipes = function (recipes) {
     const html = `
     <li class="recipe">
       <a href="">
-        <img src="${recipe.image_url}" alt="" />
+        <figure>
+          <img src="${recipe.image_url}" alt="" />
+        </figure>
         <div class="info">
           <h4 class="title">${recipe.title}</h4>
           <p class="publisher">${recipe.publisher}</p>
