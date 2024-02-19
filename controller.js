@@ -2,6 +2,8 @@
 
 const resultsContainer = document.querySelector('.results');
 const recipeContainer = document.querySelector('.recipe-container');
+const searchBtn = document.querySelector('.search-btn');
+const searchQuery = document.querySelector('.search-query');
 
 const searchRecipe = async function (query) {
   try {
@@ -22,10 +24,12 @@ const searchRecipe = async function (query) {
 };
 
 const renderRecipes = function (recipes) {
+  resultsContainer.innerHTML = '';
+
   recipes.forEach(function (recipe) {
     const html = `
     <li class="result">
-      <a href="">
+      <a href="#${recipe.id}">
         <figure>
           <img src="${recipe.image_url}" alt="" />
         </figure>
@@ -40,11 +44,12 @@ const renderRecipes = function (recipes) {
   });
 };
 
-// let id = '5ed6604591c37cdc054bcd09';
-let id = '5ed6604591c37cdc054bcb34';
-
-const showRecipe = async function (id) {
+const showRecipe = async function () {
   try {
+    const id = window.location.hash.slice(1);
+
+    if (!id) return;
+
     const res = await fetch(
       `https://forkify-api.herokuapp.com/api/v2/recipes/${id}`
     );
@@ -222,11 +227,25 @@ const showRecipe = async function (id) {
                     </p>
                   </div>`;
 
+    recipeContainer.innerHTML = '';
     recipeContainer.insertAdjacentHTML('afterbegin', html);
   } catch (error) {
     console.error(error);
   }
 };
 
-searchRecipe('pizza');
-showRecipe(id);
+searchBtn.addEventListener('click', () => {
+  const query = searchQuery.value;
+  query ? searchRecipe(query) : console.log('no valid search query');
+  searchQuery.value = '';
+});
+
+searchQuery.addEventListener('keydown', (e) => {
+  if (e.key === 'Enter') {
+    const query = searchQuery.value;
+    query ? searchRecipe(query) : console.log('no valid search query');
+    searchQuery.value = '';
+  }
+});
+
+['hashchange', 'load'].forEach((ev) => window.addEventListener(ev, showRecipe));
