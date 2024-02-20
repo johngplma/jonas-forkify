@@ -1,5 +1,6 @@
 export const state = {
   recipe: {},
+  searchResults: {},
 };
 
 export const loadRecipe = async function (id) {
@@ -9,7 +10,7 @@ export const loadRecipe = async function (id) {
       `https://forkify-api.herokuapp.com/api/v2/recipes/${id}`
     );
     const data = await res.json();
-    if (!res.ok) throw new Error(data.error);
+    if (!res.ok) throw new Error(data.message);
 
     // Save data, set recipe state
     const { recipe } = data.data;
@@ -21,6 +22,21 @@ export const loadRecipe = async function (id) {
       ingredients: recipe.ingredients,
     };
   } catch (error) {
-    console.error(error);
+    throw error;
+  }
+};
+
+export const loadSearchResults = async function (query) {
+  try {
+    // Fetch data from API
+    const res = await fetch(
+      `https://forkify-api.herokuapp.com/api/v2/recipes?search=${query}`
+    );
+    const data = await res.json();
+    if (!res.ok) throw new Error(data.message);
+
+    state.searchResults = data.data.recipes;
+  } catch (error) {
+    throw error;
   }
 };
