@@ -14,6 +14,7 @@ export default class View {
       'afterbegin',
       `<p class="error">${message}</p>`
     );
+    console.error(message);
   }
 
   _clearHtml() {

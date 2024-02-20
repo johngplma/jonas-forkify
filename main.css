@@ -214,6 +214,23 @@ header {
           background-color: hsl(240, 11%, 96%);
         }
       }
+
+      .pagination {
+        display: flex;
+        padding: 2rem;
+
+        button {
+          border: none;
+          border-radius: 10px;
+          background-color: hsl(240, 11%, 94%);
+          font-size: smaller;
+          padding: 0.25rem 0.5rem;
+        }
+
+        button:hover {
+          background-color: hsl(240, 11%, 90%);
+        }
+      }
     }
 
     .recipe {
@@ -229,8 +246,6 @@ header {
     }
 
     .recipe-container {
-      margin-bottom: 5rem;
-
       figure {
         img {
           width: 100%;

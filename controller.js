@@ -1,4 +1,5 @@
 import * as model from './model.js';
+import paginationView from './views/paginationView.js';
 import recipeView from './views/recipeView.js';
 import resultsView from './views/resultsView.js';
 import searchView from './views/searchView.js';
@@ -35,12 +36,24 @@ const resultsController = async function () {
     await model.loadSearchResults(query);
 
     // Render results
-    resultsView.render(model.state.searchResults);
+    resultsView.render(model.getResultsPerPage());
+
+    // Render pagination
+    paginationView.render(model.state.search);
   } catch (error) {
     resultsView.renderError(error);
   }
 };
 
+const paginationController = function (goToPage) {
+  // Render new results
+  resultsView.render(model.getResultsPerPage(goToPage));
+
+  // Render new pagination
+  paginationView.render(model.state.search);
+};
+
 // Event listeners from views
 recipeView.addHandlerRender(recipeController);
 searchView.addHandlerSearch(resultsController);
+paginationView.addHandlerClick(paginationController);

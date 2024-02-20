@@ -1,6 +1,10 @@
 export const state = {
   recipe: {},
-  searchResults: {},
+  search: {
+    results: [],
+    page: 1,
+    resultsPerPage: 10,
+  },
 };
 
 export const loadRecipe = async function (id) {
@@ -35,8 +39,18 @@ export const loadSearchResults = async function (query) {
     const data = await res.json();
     if (!res.ok) throw new Error(data.message);
 
-    state.searchResults = data.data.recipes;
+    state.search.results = data.data.recipes;
   } catch (error) {
     throw error;
   }
+};
+
+// Pagination
+export const getResultsPerPage = function (page = 1) {
+  state.search.page = page;
+
+  const start = (page - 1) * state.search.resultsPerPage;
+  const end = page * state.search.resultsPerPage;
+
+  return state.search.results.slice(start, end);
 };
