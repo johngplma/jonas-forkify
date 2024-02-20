@@ -2,8 +2,8 @@ import * as model from './model.js';
 import recipeView from './views/recipeView.js';
 import resultsView from './views/resultsView.js';
 
-const searchBtn = document.querySelector('.search-btn');
-const searchQuery = document.querySelector('.search-query');
+// const searchBtn = document.querySelector('.search-btn');
+// const searchQuery = document.querySelector('.search-query');
 
 const recipeController = async function () {
   try {
@@ -11,7 +11,7 @@ const recipeController = async function () {
     const id = window.location.hash.slice(1);
     if (!id) return;
 
-    // Show loading spinner while api is loading
+    // Show loading spinner while API is loading
     recipeView.loadSpinner();
 
     // Load recipe
@@ -27,14 +27,13 @@ const recipeController = async function () {
 const resultsController = async function () {
   try {
     // Get search query from user input
-    const query = 'milk';
+    const query = 'pizza';
 
-    // Show loading spinner while api is loading
+    // Show loading spinner while API is loading
     resultsView.loadSpinner();
 
     // Load search results from API
     await model.loadSearchResults(query);
-    // console.log(model.state.searchResults);
 
     // Render results
     resultsView.render(model.state.searchResults);
@@ -43,6 +42,7 @@ const resultsController = async function () {
   }
 };
 
+// Event listeners from views
 recipeView.addHandlerRender(recipeController);
 resultsController();
 

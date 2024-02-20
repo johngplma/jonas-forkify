@@ -1,37 +1,16 @@
-class RecipeView {
-  #parentEl = document.querySelector('.recipe-container');
-  #data;
+import View from './View.js';
 
-  // Render recipe
-  render(data) {
-    this.#data = data;
-    const markup = this.#generateMarkUp();
-    this.#clearHtml();
-    this.#parentEl.insertAdjacentHTML('afterbegin', markup);
-  }
+class RecipeView extends View {
+  _parentEl = document.querySelector('.recipe-container');
 
-  renderError(message) {
-    this.#clearHtml();
-    this.#parentEl.insertAdjacentHTML(
-      'afterbegin',
-      `<p class="error">${message}</p>`
-    );
-  }
-
-  // Method to clear html before loading the recipe
-  #clearHtml() {
-    this.#parentEl.innerHTML = '';
-  }
-
-  // Generate mark up for displaying the recipe
-  #generateMarkUp() {
+  _generateMarkUp() {
     return `
     <figure>
       <img
-        src=${this.#data.img}
+        src=${this._data.img}
         alt=""
       />
-      <h1>${this.#data.title}</h1>
+      <h1>${this._data.title}</h1>
     </figure>
     <div class="recipe-details">
       <div class="recipe-info">
@@ -53,7 +32,7 @@ class RecipeView {
           <path d="M12 12h3.5" />
           <path d="M12 7v5" />
         </svg>
-        <span class="recipe-info-data">${this.#data.time}</span>
+        <span class="recipe-info-data">${this._data.time}</span>
         <span class="recipe-info-text">minutes</span>
       </div>
       <div class="recipe-info">
@@ -76,7 +55,7 @@ class RecipeView {
           <path d="M16 3.13a4 4 0 0 1 0 7.75" />
           <path d="M21 21v-2a4 4 0 0 0 -3 -3.85" />
         </svg>
-        <span class="recipe-info-data">${this.#data.serving}</span>
+        <span class="recipe-info-data">${this._data.serving}</span>
         <span class="recipe-info-text">servings</span>
         <div class="recipe-info-btn">
           <button>
@@ -145,7 +124,7 @@ class RecipeView {
     <div class="ingredients-container">
       <h2>Ingredients</h2>
       <ul class="ingredients">
-    ${this.#data.ingredients
+    ${this._data.ingredients
       .map(function (ing) {
         return `<li class="ingredient">
           <svg
@@ -180,14 +159,6 @@ class RecipeView {
         Cooking. Please check out directions at their website.
       </p>
     </div>`;
-  }
-
-  loadSpinner() {
-    this.#clearHtml();
-    this.#parentEl.insertAdjacentHTML(
-      'afterbegin',
-      `<p class="spinner">Loading...</p>`
-    );
   }
 
   addHandlerRender(handler) {
