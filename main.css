@@ -86,9 +86,15 @@ header {
   color: var(--color-text);
 }
 
-.spinner {
+.spinner,
+.error {
   text-align: center;
   padding: 2rem;
+  font-weight: bold;
+}
+
+.error {
+  color: hsl(0, 100%, 65%);
 }
 
 .main-container {

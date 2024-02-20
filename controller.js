@@ -1,9 +1,7 @@
 import * as model from './model.js';
 import recipeView from './views/recipeView.js';
 import resultsView from './views/resultsView.js';
-
-// const searchBtn = document.querySelector('.search-btn');
-// const searchQuery = document.querySelector('.search-query');
+import searchView from './views/searchView.js';
 
 const recipeController = async function () {
   try {
@@ -27,7 +25,8 @@ const recipeController = async function () {
 const resultsController = async function () {
   try {
     // Get search query from user input
-    const query = 'pizza';
+    const query = searchView.getQuery();
+    if (!query) return;
 
     // Show loading spinner while API is loading
     resultsView.loadSpinner();
@@ -38,45 +37,10 @@ const resultsController = async function () {
     // Render results
     resultsView.render(model.state.searchResults);
   } catch (error) {
-    console.error(error);
+    resultsView.renderError(error);
   }
 };
 
 // Event listeners from views
 recipeView.addHandlerRender(recipeController);
-resultsController();
-
-// const renderRecipes = function (recipes) {
-//   resultsContainer.innerHTML = '';
-
-//   recipes.forEach(function (recipe) {
-//     const html = `
-//     <li class="result">
-//       <a href="#${recipe.id}">
-//         <figure>
-//           <img src="${recipe.image_url}" alt="" />
-//         </figure>
-//         <div class="info">
-//           <h4 class="title">${recipe.title}</h4>
-//           <p class="publisher">${recipe.publisher}</p>
-//         </div>
-//       </a>
-//     </li>`;
-
-//     resultsContainer.insertAdjacentHTML('beforeend', html);
-//   });
-// };
-
-// searchBtn.addEventListener('click', () => {
-//   const query = searchQuery.value;
-//   query ? searchRecipe(query) : console.log('no valid search query');
-//   searchQuery.value = '';
-// });
-
-// searchQuery.addEventListener('keydown', (e) => {
-//   if (e.key === 'Enter') {
-//     const query = searchQuery.value;
-//     query ? searchRecipe(query) : console.log('no valid search query');
-//     searchQuery.value = '';
-//   }
-// });
+searchView.addHandlerSearch(resultsController);
