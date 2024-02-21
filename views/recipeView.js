@@ -3,6 +3,22 @@ import View from './View.js';
 class RecipeView extends View {
   _parentEl = document.querySelector('.recipe-container');
 
+  addHandlerRender(handler) {
+    ['hashchange', 'load'].forEach((ev) =>
+      window.addEventListener(ev, handler)
+    );
+  }
+
+  addHandlerUpdateServings(handler) {
+    this._parentEl.addEventListener('click', (e) => {
+      const btn = e.target.closest('.btn-servings');
+      if (!btn) return;
+
+      const updateTo = +btn.dataset.updateTo;
+      handler(updateTo);
+    });
+  }
+
   _generateMarkUp() {
     return `
     <figure>
@@ -58,7 +74,7 @@ class RecipeView extends View {
         <span class="recipe-info-data">${this._data.serving}</span>
         <span class="recipe-info-text">servings</span>
         <div class="recipe-info-btn">
-          <button>
+          <button class="btn-servings" data-update-to=${this._data.serving - 1}>
             <svg
               class="icon icon-minus"
               xmlns="http://www.w3.org/2000/svg"
@@ -77,7 +93,7 @@ class RecipeView extends View {
               <path d="M9 12l6 0" />
             </svg>
           </button>
-          <button>
+          <button class="btn-servings" data-update-to=${this._data.serving + 1}>
             <svg
               class="icon icon-plus"
               xmlns="http://www.w3.org/2000/svg"
@@ -159,12 +175,6 @@ class RecipeView extends View {
         Cooking. Please check out directions at their website.
       </p>
     </div>`;
-  }
-
-  addHandlerRender(handler) {
-    ['hashchange', 'load'].forEach((ev) =>
-      window.addEventListener(ev, handler)
-    );
   }
 }
 
